@@ -199,14 +199,22 @@ This will generate out a changeset, about the state of our infrastructure and wh
 
 This will run a plan and pass the changeset to be executed by Terraform. Apply should prompt us "yes" or "no". If we want to automatically approve a reply, we can provide an auto-approve flag eg. `terraform apply --auto-approve`
 
-### Terraform Lock Files
+#### Terraform Destroy
+
+`terraform destroy`
+
+This will destroy resources.
+
+You can also use the auto approve flag to skip the approve prompt. `terraform destroy --auto-approve`
+
+#### Terraform Lock Files
 
 `terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project.
 
 The Terraform locked file **should be commited** to your Version Control System (VCS) eg. "Github"
 
 
-### Terraform State Files
+#### Terraform State Files
 
 `terraform.tfstate` contain information about the current state of your infrastructure.
 
