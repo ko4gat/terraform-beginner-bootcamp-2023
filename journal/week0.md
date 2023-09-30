@@ -7,7 +7,7 @@
       - [Execution Considerations](#execution-considerations)
       - [Linux Permissions Considerations](#linux-permissions-considerations)
     + [Considerations for Linux Distribution](#considerations-for-linux-distribution)
-    + [Gitpod Lifecycle (Before, Init, Command)](#gitpod-lifecycle--before--init--command-)
+    + [Gitpod Lifecycle](#gitpod-lifecycle)
   * [Working with Env Vars](#working-with-env-vars)
     + [Env Var Commands](#env-var-commands)
     + [Setting and Unsetting Env Vars](#setting-and-unsetting-env-vars)
@@ -125,7 +125,7 @@ PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-poli
 UBUNTU_CODENAME=jammy
 ```
 
-### Gitpod Lifecycle (Before, Init, Command)
+### Gitpod Lifecycle
 
 We need to be careful when using Init because it will not rerun if we restart an existing workspace.
 
