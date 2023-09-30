@@ -27,9 +27,6 @@
     + [Terraform Directory](#terraform-directory)
   * [Issues with Terraform Cloud and Gitpod Workspace Login](#issues-with-terraform-cloud-and-gitpod-workspace-login)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
-
 
 ## Semantic-Versioning
 
