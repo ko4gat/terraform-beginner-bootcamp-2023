@@ -8,11 +8,13 @@
       - [Linux Permissions Considerations](#linux-permissions-considerations)
     + [Considerations for Linux Distribution](#considerations-for-linux-distribution)
     + [Gitpod Lifecycle (Before, Init, Command)](#gitpod-lifecycle--before--init--command-)
-    + [Working with Env Vars](#working-with-env-vars)
+  * [Working with Env Vars](#working-with-env-vars)
+    + [Env Var Commands](#env-var-commands)
+    + [Setting and Unsetting Env Vars](#setting-and-unsetting-env-vars)
     + [Printing Vars](#printing-vars)
     + [Scoping of Env Vars](#scoping-of-env-vars)
-      - [Persisting Env Vars in Gitpod](#persisting-env-vars-in-gitpod)
-    + [AWS CLI INSTALLATION](#aws-cli-installation)
+    + [Persisting Env Vars in Gitpod](#persisting-env-vars-in-gitpod)
+  * [AWS CLI INSTALLATION](#aws-cli-installation)
 - [Terraform Basics](#terraform-basics)
     + [Terraform Registries](#terraform-registries)
   * [Terraform Console](#terraform-console)
@@ -24,6 +26,9 @@
       - [Terraform State Files](#terraform-state-files)
     + [Terraform Directory](#terraform-directory)
   * [Issues with Terraform Cloud and Gitpod Workspace Login](#issues-with-terraform-cloud-and-gitpod-workspace-login)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 
 ## Semantic-Versioning
@@ -126,11 +131,14 @@ We need to be careful when using Init because it will not rerun if we restart an
 
 https://www.gitpod.io/docs/configure/workspaces/tasks
 
-### Working with Env Vars
+## Working with Env Vars
 
+### Env Var Commands
 We can list out all enviroment variables (Env Var) using the `env` command.
 
 We can filter specific env vars using grep. eg. `env | grep AWS_`
+
+### Setting and Unsetting Env Vars
 
 In the terminal we can set using `export Hello=`World`
 
@@ -158,7 +166,7 @@ When you open up new bash terminals in VSCode it will not be aware of env vars t
 
 If you want env vars to persist across all future bash terminals that are open you need to set env vars in your bash profile eg. `.bash_profile` 
 
-#### Persisting Env Vars in Gitpod
+### Persisting Env Vars in Gitpod
 
 We can persist env vars into Gitpod by storing them in Gitpod Secrets Storage.
 
@@ -170,7 +178,7 @@ All future workspaces launched will set the new env vars for all bash terminals 
 
 You can also set env vars in the `.gitpod.yml` but this can only contain non sensitive env vars. 
 
-### AWS CLI INSTALLATION
+## AWS CLI INSTALLATION
  
  AWS CLI is installed for the project via the bash script [`./bin/install_aws_cli`](./bin/install_aws_cli)
 
@@ -286,6 +294,9 @@ Provide the following code (replace your token in the file):
 ```
 
 We have automated this workaround with the following bash script:
+
+[bin/generate_tfrc_credentials](bin/generate_tfrc_credentials)
+
 
 [bin/generate_tfrc_credentials](bin/generate_tfrc_credentials)
 
