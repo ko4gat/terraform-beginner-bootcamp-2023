@@ -1,6 +1,20 @@
 # Terraform Beginner Bootcamp 2023
 
-## Semantic Versioning :mage:
+## Table of Contents
+
+- [Semantic Versioning](#Semantic-Versioning)
+
+- [Install the Terraform CLI](#INSTALL-TERRAFORM-CLI)
+ 
+  - [Considerations with Terraform CLI changes](#considerations-with-terraform-cli-changes)
+  
+
+
+
+
+
+
+## Semantic-Versioning
 
 This project is going to utilize semantic versioning for it tagging.
 
