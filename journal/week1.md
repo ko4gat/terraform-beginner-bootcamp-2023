@@ -50,4 +50,24 @@ Document this functionality for terraform cloud
 
 Document which Terraform variable settings take precedence.
 
+## Dealing with Configuration Drift
+
+### What happens if we lose our state file?
+
+If you lose your state file, you will most likely have to tear down all your cloud infrastructure manually. 
+You can use terraform input, but it won't work for all cloud resource. You will need to check the terraform providers docmentation for which resources support import.
+
+### Fix Missing Resources With Terraform Import
+
+```terraform import aws_s3_bucket.bucket bucket-name```
+
+[Terraform Import](https://developer.hashicorp.com/terraform/cli/commands/import)
+
+### Fix Manual Configuration
+
+If someone modifies cloud resources manually through click-ops. If we run `terraform plan` again it will attempt to put our infrastructure back into the expected state fixing Configuration Drift.
+
+
+
+
 
