@@ -50,6 +50,8 @@ class Home
   validates :content_version, numericality: { only_integer: true }
 end
 
+# We are extending a class from Sinatra::Base to 
+# to turn this generic class to utilize Sintra web framework.
 class TerraTownsMockServer < Sinatra::Base
 
   def error code, message
@@ -71,11 +73,11 @@ class TerraTownsMockServer < Sinatra::Base
   end
 
   def x_access_code
-    '9b49b3fb-b8e9-483c-b703-97ba88eef8e0'
+    return '9b49b3fb-b8e9-483c-b703-97ba88eef8e0'
   end
 
   def x_user_uuid
-    'e328f4ab-b99f-421c-84c9-4ccea042c7d1'
+    return 'e328f4ab-b99f-421c-84c9-4ccea042c7d1'
   end
 
   def find_user_by_bearer_token
@@ -84,11 +86,15 @@ class TerraTownsMockServer < Sinatra::Base
       error 401, "a1000 Failed to authenicate, bearer token invalid and/or teacherseat_user_uuid invalid"
     end
 
+# Does the token match the one in our database?
+# If we cant find it, or it doesnt match then return an error.
+# code = access_code = token
+
     code = auth_header.split("Bearer ")[1]
     if code != x_access_code
       error 401, "a1001 Failed to authenicate, bearer token invalid and/or teacherseat_user_uuid invalid"
     end
-
+# Was there a user_uuid in the body payload json?
     if params['user_uuid'].nil?
       error 401, "a1002 Failed to authenicate, bearer token invalid and/or teacherseat_user_uuid invalid"
     end
@@ -130,12 +136,17 @@ class TerraTownsMockServer < Sinatra::Base
     home.domain_name = domain_name
     home.content_version = content_version
     
+    # Ensure our validation checks pass, otherwise return the errors 
     unless home.valid?
+    # Return the error messages back to json
       error 422, home.errors.messages.to_json
     end
 
+    # Generating a uuid at random. 
     uuid = SecureRandom.uuid
     puts "uuid #{uuid}"
+    # Will mock our data to our mock database which is just
+    # a global variable 
     $home = {
       uuid: uuid,
       name: name,
@@ -144,7 +155,7 @@ class TerraTownsMockServer < Sinatra::Base
       domain_name: domain_name,
       content_version: content_version
     }
-
+# Will just return a uuid 
     return { uuid: uuid }.to_json
   end
 
@@ -157,6 +168,7 @@ class TerraTownsMockServer < Sinatra::Base
     # checks for house limit
 
     content_type :json
+    # Does the uuid for home match the one in our mock database.
     if params[:uuid] == $home[:uuid]
       return $home.to_json
     else
@@ -165,6 +177,8 @@ class TerraTownsMockServer < Sinatra::Base
   end
 
   # UPDATE
+  # Very similar to create action
+  
   put '/api/u/:user_uuid/homes/:uuid' do
     ensure_correct_headings
     find_user_by_bearer_token
