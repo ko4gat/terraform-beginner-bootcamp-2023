@@ -17,17 +17,36 @@ class Home
   # The production Terratowns server is railsand uses very similar and in most cases 
   # identical validation. 
   # https://guides.rubyonrails.org/active_model_basics.html
+  # https://guides.rubyonrails.org/active_record_validations.html
+
   
   include ActiveModel::Validations
+
+  # Create some virtual attributes to be stored on this object. 
+  # This wil set a getter and setter eg.
+  # home = new Home()
+  # home.town = 'hello' # setter
+  # home.town() = # getter
   attr_accessor :town, :name, :description, :domain_name, :content_version
 
-  validates :town, presence: true
+  validates :town, presence: true, inclusion: { in: [
+    'cooker-cove',
+    'gamers-grotto',
+    'the-nomad-pad',
+    'melomaniac-mansion',
+    'video-valley'
+
+  ]}
+  # Visible to all users
   validates :name, presence: true
+  # Visible to all users
   validates :description, presence: true
+  # Visible to all users
   validates :domain_name, 
     format: { with: /\.cloudfront\.net\z/, message: "domain must be from .cloudfront.net" }
     # uniqueness: true, 
-
+  # Content version has to be an integer 
+  # We will make sure it is an incremental version in the controller.
   validates :content_version, numericality: { only_integer: true }
 end
 
