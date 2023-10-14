@@ -35,7 +35,7 @@ module "terrahouse_aws" {
 
 
 resource "terratowns_home" "home" {
-  name = "Guild Wars 1!"
+  name = "Guild Wars 1"
   description = <<DESCRIPTION
 Guild Wars 1, released in 2005, was a popular MMORPG known for its engaging storyline,
 unique character customization with a dual profession system, 
