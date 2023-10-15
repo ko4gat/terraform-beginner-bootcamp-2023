@@ -24,7 +24,7 @@ provider "terratowns" {
   token = var.terratowns_access_token
 }
 
-module "home_guildwars_hosting" {
+module "home_guild_wars_hosting" {
   source = "./modules/terrahome_aws"
   user_uuid = var.teacherseat_user_uuid
   public_path = var.guild_wars.public_path
@@ -45,29 +45,29 @@ Guild Wars 1 a memorable and enjoyable experience for players.
 DESCRIPTION
   domain_name = module.home_guild_wars_hosting.domain_name
   #domain_name = "asd7f7v6.cloudfront.net"
-  town = "missingo"
-  content_version = 5
+  town = "gamers-grotto"
+  content_version = var.guild_wars.content_version
 }
 
-# module "home_halo_2_hosting" {
-#   source = "./modules/terrahome_aws"
-#   user_uuid = var.teacherseat_user_uuid
-#   public_path = var.halo_2.public_path
-#   content_version = var.halo_2.content_version
-# }
-# 
-# resource "terratowns_home" "home_halo_2" {
-#   name = "Halo 2"
-#   description = <<DESCRIPTION
-# Halo 2 multiplayer brought unprecedented excitement to gamers with its 
-# fast-paced action, iconic maps, and innovative matchmaking system. 
-# Players could engage in intense battles with friends and rivals, using a diverse range of 
-# weapons and vehicles in epic combat scenarios. Its seamless integration of online play on the
-# original Xbox Live service further elevated the exhilaration, making it a defining experience for
-# the early days of competitive console gaming.
-# DESCRIPTION
-#   domain_name = module.home_halo_2_hosting.domain_name
-#   #domain_name = "asd7f7v6.cloudfront.net"
-#   town = "missingo"
-#   content_version = 5
-# }
+ module "home_halo_2_hosting" {
+   source = "./modules/terrahome_aws"
+   user_uuid = var.teacherseat_user_uuid
+   public_path = var.halo_2.public_path
+   content_version = var.halo_2.content_version
+ }
+ 
+ resource "terratowns_home" "home_halo_2" {
+   name = "Halo 2"
+   description = <<DESCRIPTION
+ Halo 2 multiplayer brought unprecedented excitement to gamers with its 
+ fast-paced action, iconic maps, and innovative matchmaking system. 
+ Players could engage in intense battles with friends and rivals, using a diverse range of 
+ weapons and vehicles in epic combat scenarios. Its seamless integration of online play on the
+ original Xbox Live service further elevated the exhilaration, making it a defining experience for
+ the early days of competitive console gaming.
+ DESCRIPTION
+   domain_name = module.home_halo_2_hosting.domain_name
+   #domain_name = "asd7f7v6.cloudfront.net"
+   town = "gamers-grotto"
+   content_version = var.halo_2.content_version
+ }

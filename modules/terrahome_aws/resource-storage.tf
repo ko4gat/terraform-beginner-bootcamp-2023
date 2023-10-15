@@ -39,7 +39,7 @@ resource "aws_s3_object" "index_html" {
 }
 resource "aws_s3_object" "upload_assets"{
 
-  for_each = fileset(var.public_path+"/assets", "*.{jpg,png,gif}")
+  for_each = fileset("${var.public_path}/assets", "*.{jpg,png,gif}")
   bucket = aws_s3_bucket.website_bucket.bucket
   key    = "assets/${each.key}"
   source = "${var.public_path}/assets/${each.key}"
@@ -63,9 +63,9 @@ resource "aws_s3_object" "error_html" {
 
 }
 
-resource "aws_s3_bucket_policy" "aws_s3_bucket_policy" {
+resource "aws_s3_bucket_policy" "bucket_policy" {
   bucket = aws_s3_bucket.website_bucket.bucket
-  #vpolicy = data.aws_iam_policy_document.allow_access_from_another_account.json
+  #policy = data.aws_iam_policy_document.allow_access_from_another_account.json
   policy = jsonencode({
     "Version" = "2012-10-17",
     "Statement" = {
@@ -88,7 +88,6 @@ resource "aws_s3_bucket_policy" "aws_s3_bucket_policy" {
 
 resource "terraform_data" "content_version"{
   input = var.content_version
-
 }
 
 
