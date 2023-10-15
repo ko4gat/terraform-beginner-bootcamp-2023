@@ -10,12 +10,12 @@ terraform {
   #  }
   #}
 
-  #cloud {
-  #  organization = "KO4GAT"
-  #  workspaces {
-  #    name = "terra-house-1"
-  #  }
-  #}
+  cloud {
+    organization = "KO4GAT"
+    workspaces {
+      name = "terra-house-1"
+    }
+  }
   }
 
 provider "terratowns" {
@@ -24,13 +24,11 @@ provider "terratowns" {
   token = var.terratowns_access_token
 }
 
-module "terrahouse_aws" {
-  source = "./modules/terrahouse_aws"
+module "home_guildwars" {
+  source = "./modules/terrahome_aws"
   user_uuid = var.teacherseat_user_uuid
-  index_html_filepath = var.index_html_filepath
-  error_html_filepath = var.error_html_filepath
+  public_path = var.guild_wars_public_path
   content_version = var.content_version
-  assets_path = var.assets_path
 }
 
 
@@ -45,7 +43,30 @@ received expansions over time, adding new content and keeping the game exciting.
 The combination of immersive lore, strategic gameplay, and accessible online play made 
 Guild Wars 1 a memorable and enjoyable experience for players.
 DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
+  domain_name = module.home_guild_wars.domain_name
+  #domain_name = "asd7f7v6.cloudfront.net"
+  town = "missingo"
+  content_version = 5
+}
+
+module "home_halo_2" {
+  source = "./modules/terrahome_aws"
+  user_uuid = var.teacherseat_user_uuid
+  public_path = var.halo_2_public_path
+  content_version = var.content_version
+}
+
+resource "terratowns_home" "home" {
+  name = "Halo 2"
+  description = <<DESCRIPTION
+Halo 2 multiplayer brought unprecedented excitement to gamers with its 
+fast-paced action, iconic maps, and innovative matchmaking system. 
+Players could engage in intense battles with friends and rivals, using a diverse range of 
+weapons and vehicles in epic combat scenarios. Its seamless integration of online play on the
+original Xbox Live service further elevated the exhilaration, making it a defining experience for
+the early days of competitive console gaming.
+DESCRIPTION
+  domain_name = module.home_halo_2.domain_name
   #domain_name = "asd7f7v6.cloudfront.net"
   town = "missingo"
   content_version = 5
